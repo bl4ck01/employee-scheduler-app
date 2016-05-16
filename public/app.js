@@ -18,6 +18,9 @@ function Config($stateProvider, $urlRouterProvider, $locationProvider) {
   }).state('RegisterAdmin',{
     url: '/register-admin',
     templateUrl: './public/views/registerAdmin.html'
+  }).state('Home',{
+    url: '/home',
+    templateUrl: './public/views/home.html'
   });
   
   $urlRouterProvider.otherwise('/login');

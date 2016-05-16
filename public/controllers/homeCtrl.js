@@ -2,15 +2,15 @@
 (function() {
   'use strict';
   angular.module('stamplay')
-  .controller('loginCtrl', loginCtrl);
-  loginCtrl.$inject = [
+  .controller('homeCtrl', homeCtrl);
+  homeCtrl.$inject = [
     '$state',
     "$http",
     "$scope", 
     "$stamplay",
     "User"
   ];
-  function loginCtrl(
+  function homeCtrl(
     $state, 
     $http, 
     $scope, 
@@ -19,11 +19,7 @@
     )
   {
 
-    $scope.login = function(user) {
-      User.signIn(user).then(function(){
-        $state.go('Home');
-      });
-    };
+
 
   }
   })();

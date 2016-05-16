@@ -36,11 +36,21 @@
 
 //EMPLOYEE SIGNUP
     $scope.signupEmployee = function(employee) {
-      User.newEmployee(employee).then(function(user){
-        console.log(user);
+      User.Register(employee).then(function(user){
+        $state.go('Home');
       });
     };
 
+//ADMIN SIGNUP
+    var key;
+    $scope.signupAdmin = function(admin) {
+      key = admin.key;
+      User.Register(admin).then(function(user){
+        User.assignRole(user.id, key).then(function(){
+          $state.go('Home');
+        });
+      });
+    };
 
 
   }
