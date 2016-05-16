@@ -1,0 +1,18 @@
+html, body{
+	font-family: 'Poiret One', cursive;
+}
+
+/*HELPERS*/
+.extra-margin-top{
+	margin-top: 200px;
+}
+.full-width{
+	width: 100%;
+}
+.pointer{
+	cursor: pointer;
+}
+.border-line{
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 5px;
+}

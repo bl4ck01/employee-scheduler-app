@@ -1,0 +1,10 @@
+{
+  "appId": "employee-scheduler",
+  "apiKey": "ad689dac613b064fbf7ec99c661d922c58c1a788b46ee77ab7f7aaf6ceb16051",
+  "public": "./",
+  "ignore": [
+    "stamplay.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
