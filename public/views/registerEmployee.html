@@ -6,20 +6,28 @@
           <h4>New Account - Employee</h4>
     			<p class="control has-icon">
   					<input
-              ng-model="employee.email" 
+              ng-model="employee.name" 
+              class="input" 
+              type="text" 
+              placeholder="Full Name">
+  					<i class="fa fa-user"></i>
+				</p>
+				<p class="control has-icon">
+  					<input
+              ng-model="employee.email"  
               class="input" 
               type="email" 
               placeholder="Email">
   					<i class="fa fa-envelope"></i>
 				</p>
-				<p class="control has-icon">
-  					<input
+        <p class="control has-icon">
+            <input
               ng-model="employee.password"  
               class="input" 
               type="password" 
               placeholder="Password">
-  					<i class="fa fa-lock"></i>
-				</p>
+            <i class="fa fa-lock"></i>
+        </p>
 				<p class="control">
   					<button class="button is-info full-width" ng-click="signupEmployee(employee)">
     				Submit

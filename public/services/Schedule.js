@@ -7,11 +7,11 @@
 
   function Schedule($http, $q){
 	return {
-    	newSubscription : function(email){
+    	getScheduleData : function(){
         var q = $q.defer();
-    		Stamplay.Object('subscription').save(email).then(function(res){
-        		q.resolve(res);
-    		});	
+    		Stamplay.User.get({}).then(function(res) {
+          q.resolve(res);
+        });
         return q.promise;
     	}
 	};

@@ -36,16 +36,41 @@
 
 //EMPLOYEE SIGNUP
     $scope.signupEmployee = function(employee) {
-      User.Register(employee).then(function(user){
+      var employeeInfo = {
+        name: employee.name,
+        email: employee.email,
+        password: employee.password,
+        monday: "off",
+        tuesday: "off",
+        wednesday: "off",
+        thursday: "off",
+        friday: "off",
+        saturday: "off",
+        sunday: "off"
+      };
+
+      User.Register(employeeInfo).then(function(user){
         $state.go('Home');
       });
     };
 
 //ADMIN SIGNUP
-    var key;
     $scope.signupAdmin = function(admin) {
-      key = admin.key;
-      User.Register(admin).then(function(user){
+      var key = admin.key;
+      var adminInfo = {
+        name: admin.name,
+        email: admin.email,
+        password: admin.password,
+        monday: "off",
+        tuesday: "off",
+        wednesday: "off",
+        thursday: "off",
+        friday: "off",
+        saturday: "off",
+        sunday: "off"
+      };
+
+      User.Register(adminInfo).then(function(user){
         User.assignRole(user.id, key).then(function(){
           $state.go('Home');
         });

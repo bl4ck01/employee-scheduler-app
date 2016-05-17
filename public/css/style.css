@@ -1,5 +1,10 @@
 html, body{
 	font-family: 'Poiret One', cursive;
+	color: #000;
+}
+.tabs li.is-active a {
+    border-bottom-color: #33cc33;
+    color: #33cc33;
 }
 
 /*HELPERS*/
@@ -15,4 +20,18 @@ html, body{
 .border-line{
 	border-bottom: 1px solid #dddddd;
 	padding-bottom: 5px;
+}
+.cell{
+	border: 1px solid #cccccc;
+	background-color: #fff;
+}
+.white{
+	background-color: #fff !important;
+}
+.full-height{
+	min-height: 100vh;
+}
+.x-margin{
+	padding-top: 20px;
+	padding-bottom: 20px;
 }

@@ -1,3 +1,85 @@
 <div ng-controller="homeCtrl">
+  <div class="columns">
+  <div class="column is-8 is-offset-2 white box full-height">
+<!--TAB NAV-->
+	<div class="tabs is-centered is-boxed">
+  		<ul>
+    	<li id="viewTab" class="is-active">
+      		<a ng-click="viewTab()">
+        	<span class="icon is-small"><i class="fa fa-eye"></i></span>
+        	<span>View</span>
+      		</a>
+    	</li>
+    	<li id="scheduleTab" class="none">
+      		<a ng-click="scheduleTab()">
+        	<span class="icon is-small"><i class="fa fa-calendar-plus-o"></i></span>
+        	<span>Scedule</span>
+      		</a>
+    	</li>
+    	<li id="employeesTab" class="none">
+      		<a ng-click="employeesTab()">
+        	<span class="icon is-small"><i class="fa fa-users"></i></span>
+        	<span>Employees</span>
+      		</a>
+    	</li>
+  		</ul>
+	</div>
+<!--SCHEDULE OUTPUT-->
+  <div class="has-text-centered content x-margin">
+    <h2>Weekly Schedule</h2>
+  </div>
+  <div class="columns has-text-centered">
+    <div class="column">
+    </div>
+    <div class="column">
+      <p>Mon</p>
+    </div>
+    <div class="column">
+      <p>Tue</p>
+    </div>
+    <div class="column">
+      <p>Wed</p>
+    </div>
+    <div class="column">
+      <p>Thur</p>
+    </div>
+    <div class="column">
+      <p>Fri</p>
+    </div>
+    <div class="column">
+      <p>Sat</p>
+    </div>
+    <div class="column">
+      <p>Sun</p>
+    </div>
+  </div>
+  <div class="columns has-text-centered" ng-repeat="s in schedule">
+    <div class="column">
+      {{s.name}}
+    </div>
+    <div class="column cell">
+      {{s.monday}}
+    </div>
+    <div class="column cell">
+      {{s.tuesday}}
+    </div>
+    <div class="column cell">
+      {{s.wednesday}}
+    </div>
+    <div class="column cell">
+      {{s.thursday}}
+    </div>
+    <div class="column cell">
+      {{s.friday}}
+    </div>
+    <div class="column cell">
+      {{s.saturday}}
+    </div>
+    <div class="column cell">
+      {{s.sunday}}
+    </div>
+  </div>
 
+  </div>
+  </div>
 </div>

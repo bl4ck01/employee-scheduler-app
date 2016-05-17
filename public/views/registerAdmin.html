@@ -5,6 +5,14 @@
   			<h2 class="has-text-centered extra-margin-top">Employee Scheduler - CMS</h2>
     		<div class="box">
           <h4>New Account - Admin</h4>
+          <p class="control has-icon">
+            <input
+              ng-model="admin.name" 
+              class="input" 
+              type="text" 
+              placeholder="Full Name">
+            <i class="fa fa-user"></i>
+          </p>
     			<p class="control has-icon">
   					<input
               ng-model="admin.email" 
@@ -12,31 +20,31 @@
               type="email" 
               placeholder="Email">
   					<i class="fa fa-envelope"></i>
-				</p>
-				<p class="control has-icon">
+				  </p>
+				  <p class="control has-icon">
   					<input
               ng-model="admin.password"  
               class="input" 
               type="password" 
               placeholder="Password">
   					<i class="fa fa-lock"></i>
-				</p>
-        <p class="control has-icon">
+				  </p>
+          <p class="control has-icon">
             <input 
               ng-model="admin.key" 
               class="input" 
               type="password" 
               placeholder="Admin Key">
             <i class="fa fa-key"></i>
-        </p>
-				<p class="control">
+          </p>
+				  <p class="control">
   					<button class="button is-info full-width" ng-click="signupAdmin(admin)">
     				Submit
   					</button>
-				</p>
-        <p class="control pointer" ui-sref="Role">
+				  </p>
+          <p class="control pointer" ui-sref="Role">
             Back
-        </p>
+          </p>
   			</div>
 		</div>
 	</div>
