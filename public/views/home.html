@@ -1,85 +1,438 @@
 <div ng-controller="homeCtrl">
   <div class="columns">
-  <div class="column is-8 is-offset-2 white box full-height">
+    <div class="column is-8 is-offset-2 white box full-height">
 <!--TAB NAV-->
-	<div class="tabs is-centered is-boxed">
-  		<ul>
-    	<li id="viewTab" class="is-active">
+	    <div class="tabs is-centered is-boxed">
+  		  <ul>
+    	  <li id="viewTab" class="is-active">
       		<a ng-click="viewTab()">
-        	<span class="icon is-small"><i class="fa fa-eye"></i></span>
-        	<span>View</span>
+        	  <span class="icon is-small"><i class="fa fa-eye"></i></span>
+        	  <span>View</span>
       		</a>
-    	</li>
-    	<li id="scheduleTab" class="none">
-      		<a ng-click="scheduleTab()">
-        	<span class="icon is-small"><i class="fa fa-calendar-plus-o"></i></span>
-        	<span>Scedule</span>
+    	  </li>
+    	  <li id="scheduleTab" class="none">
+      		<a ng-click="editTab()">
+        	  <span class="icon is-small"><i class="fa fa-calendar-plus-o"></i></span>
+        	  <span>Edit</span>
       		</a>
-    	</li>
-    	<li id="employeesTab" class="none">
+    	  </li>
+    	  <li id="employeesTab" class="none">
       		<a ng-click="employeesTab()">
-        	<span class="icon is-small"><i class="fa fa-users"></i></span>
-        	<span>Employees</span>
+        	  <span class="icon is-small"><i class="fa fa-users"></i></span>
+        	  <span>Employees</span>
       		</a>
-    	</li>
-  		</ul>
-	</div>
+    	  </li>
+  		  </ul>
+	    </div>
 <!--SCHEDULE OUTPUT-->
-  <div class="has-text-centered content x-margin">
-    <h2>Weekly Schedule</h2>
-  </div>
-  <div class="columns has-text-centered">
-    <div class="column">
-    </div>
-    <div class="column">
-      <p>Mon</p>
-    </div>
-    <div class="column">
-      <p>Tue</p>
-    </div>
-    <div class="column">
-      <p>Wed</p>
-    </div>
-    <div class="column">
-      <p>Thur</p>
-    </div>
-    <div class="column">
-      <p>Fri</p>
-    </div>
-    <div class="column">
-      <p>Sat</p>
-    </div>
-    <div class="column">
-      <p>Sun</p>
-    </div>
-  </div>
-  <div class="columns has-text-centered" ng-repeat="s in schedule">
-    <div class="column">
-      {{s.name}}
-    </div>
-    <div class="column cell">
-      {{s.monday}}
-    </div>
-    <div class="column cell">
-      {{s.tuesday}}
-    </div>
-    <div class="column cell">
-      {{s.wednesday}}
-    </div>
-    <div class="column cell">
-      {{s.thursday}}
-    </div>
-    <div class="column cell">
-      {{s.friday}}
-    </div>
-    <div class="column cell">
-      {{s.saturday}}
-    </div>
-    <div class="column cell">
-      {{s.sunday}}
-    </div>
-  </div>
+      <div ng-hide="hideViewTab">
+        <div class="has-text-centered content x-margin">
+          <h2>Weekly Schedule</h2>
+        </div>
+        <div class="columns has-text-centered">
+          <div class="column">
+          </div>
+          <div class="column">
+            <p>Mon</p>
+          </div>
+          <div class="column">
+            <p>Tue</p>
+          </div>
+          <div class="column">
+            <p>Wed</p>
+          </div>
+          <div class="column">
+            <p>Thur</p>
+          </div>
+          <div class="column">
+            <p>Fri</p>
+          </div>
+          <div class="column">
+            <p>Sat</p>
+          </div>
+          <div class="column">
+            <p>Sun</p>
+          </div>
+        </div>
+        <div class="columns has-text-centered" ng-repeat="s in schedule">
+          <div class="column">
+            {{s.name}}
+          </div>
+          <div class="column cell">
+            {{s.monday}}
+          </div>
+          <div class="column cell">
+            {{s.tuesday}}
+          </div>
+          <div class="column cell">
+            {{s.wednesday}}
+          </div>
+          <div class="column cell">
+            {{s.thursday}}
+          </div>
+          <div class="column cell">
+            {{s.friday}}
+          </div>
+          <div class="column cell">
+            {{s.saturday}}
+          </div>
+          <div class="column cell">
+            {{s.sunday}}
+          </div>
+        </div>
+      </div>
+<!--SET SCHEDULE-->
+      <div ng-hide="hideEditTab">
+        <div class="has-text-centered content x-margin">
+          <h2>Edit Schedule</h2>
+        </div>
+        <div class="columns">
+          <div class="column is-4 is-offset-4">
+            <p class="control">
+              <label for="list"> Who's schedule would you like to edit? </label><br>
+              <span class="select is-fullwidth">
+                <select name="list" ng-model="employeeList">
+                  <option value="">Select Employee</option>
+                  <option ng-repeat="e in employees">{{e.name}}</option>
+                </select>
+              </span>
+            </p>
+          </div>
+        </div>
+<!--MONDAY-->
+        <div class="columns has-text-centered section">
+          <div class="column">
+            <p class="control">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="monday">
+                Monday
+              </label>
+            </p>
+          </div>
+          <div class="column">
+              <div class="control is-grouped">
+                <input
+                  ng-model="monStart" 
+                  class="input" 
+                  type="text" 
+                  placeholder="START (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="monStartAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+          <div class="column">
+            <div class="control is-grouped">
+                <input
+                  ng-model="monEnd" 
+                  class="input" 
+                  type="text" 
+                  placeholder="END (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="monEndAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+<!--TUESDAY-->
+        <div class="columns has-text-centered section">
+          <div class="column">
+            <p class="control">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="tuesday">
+                Tuesday
+              </label>
+            </p>
+          </div>
+          <div class="column">
+              <div class="control is-grouped">
+                <input
+                  ng-model="tuesStart" 
+                  class="input" 
+                  type="text" 
+                  placeholder="START (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="tuesStartAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+          <div class="column">
+            <div class="control is-grouped">
+                <input
+                  ng-model="tuesEnd" 
+                  class="input" 
+                  type="text" 
+                  placeholder="END (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="tuesEndAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+<!--WEDNESDAY-->
+        <div class="columns has-text-centered section">
+          <div class="column">
+            <p class="control">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="wednesday">
+                Wednesday
+              </label>
+            </p>
+          </div>
+          <div class="column">
+              <div class="control is-grouped">
+                <input
+                  ng-model="wedStart" 
+                  class="input" 
+                  type="text" 
+                  placeholder="START (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="wedStartAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+          <div class="column">
+            <div class="control is-grouped">
+                <input
+                  ng-model="wedEnd" 
+                  class="input" 
+                  type="text" 
+                  placeholder="END (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="wedEndAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+<!--THURSDAY-->
+        <div class="columns has-text-centered section">
+          <div class="column">
+            <p class="control">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="thursday">
+                Thursday
+              </label>
+            </p>
+          </div>
+          <div class="column">
+              <div class="control is-grouped">
+                <input
+                  ng-model="thursStart" 
+                  class="input" 
+                  type="text" 
+                  placeholder="START (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="thursStartAMPM" >
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+          <div class="column">
+            <div class="control is-grouped">
+                <input
+                  ng-model="thursEnd" 
+                  class="input" 
+                  type="text" 
+                  placeholder="END (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="thursEndAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+<!--FRIDAY-->
+        <div class="columns has-text-centered section">
+          <div class="column">
+            <p class="control">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="friday">
+                Friday
+              </label>
+            </p>
+          </div>
+          <div class="column">
+              <div class="control is-grouped">
+                <input
+                  ng-model="friStart" 
+                  class="input" 
+                  type="text" 
+                  placeholder="START (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="friStartAMPM" >
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+          <div class="column">
+            <div class="control is-grouped">
+                <input
+                  ng-model="friEnd"  
+                  class="input" 
+                  type="text" 
+                  placeholder="END (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="friEndAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+<!--SATURDAY-->
+        <div class="columns has-text-centered section">
+          <div class="column">
+            <p class="control">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="saturday">
+                Saturday
+              </label>
+            </p>
+          </div>
+          <div class="column">
+              <div class="control is-grouped">
+                <input
+                  ng-model="satStart" 
+                  class="input" 
+                  type="text" 
+                  placeholder="START (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="satStartAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+          <div class="column">
+            <div class="control is-grouped">
+                <input
+                  ng-model="satEnd" 
+                  class="input" 
+                  type="text" 
+                  placeholder="END (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="satEndAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+<!--SUNDAY-->
+        <div class="columns has-text-centered section">
+          <div class="column">
+            <p class="control">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="sunday">
+                Sunday
+              </label>
+            </p>
+          </div>
+          <div class="column">
+              <div class="control is-grouped">
+                <input
+                  ng-model="sunStart" 
+                  class="input" 
+                  type="text" 
+                  placeholder="START (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="sunStartAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+          <div class="column">
+            <div class="control is-grouped">
+                <input
+                  ng-model="sunEnd" 
+                  class="input" 
+                  type="text" 
+                  placeholder="END (00:00)">
+                <p class="control">
+                  <span class="select">
+                    <select ng-model="sunEndAMPM">
+                      <option value="">am/pm</option>
+                      <option>am</option>
+                      <option>pm</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+        <div class="section"></div>
+        <a class="button is-success" ng-click="save()">Save Schedule</a>
 
-  </div>
+
+      </div>
+    </div>
   </div>
 </div>

@@ -13,7 +13,14 @@
           q.resolve(res);
         });
         return q.promise;
-    	}
+    	},
+      update : function(info){
+        var q = $q.defer();
+        Stamplay.User.update(info.id, info).then(function(res) {
+          q.resolve(res);
+        });
+        return q.promise;
+      }
 	};
 }
 })();
