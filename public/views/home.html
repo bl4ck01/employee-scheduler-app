@@ -24,6 +24,7 @@
     	  </li>
   		  </ul>
 	    </div>
+<!--VIEW TAB/////////////////////////////////////////////////////////////////////////////////-->
 <!--SCHEDULE OUTPUT-->
       <div ng-hide="hideViewTab">
         <div class="has-text-centered content x-margin">
@@ -81,22 +82,34 @@
           </div>
         </div>
       </div>
+<!--EDIT TAB/////////////////////////////////////////////////////////////////////////////////-->
 <!--SET SCHEDULE-->
       <div ng-hide="hideEditTab">
         <div class="has-text-centered content x-margin">
           <h2>Edit Schedule</h2>
         </div>
-        <div class="columns">
+        <div class="columns x-margin-bottom">
           <div class="column is-4 is-offset-4">
             <p class="control">
               <label for="list"> Who's schedule would you like to edit? </label><br>
               <span class="select is-fullwidth">
-                <select name="list" ng-model="employeeList">
+                <select name="list" ng-model="employeeList" ng-change="output(e.name)">
                   <option value="">Select Employee</option>
                   <option ng-repeat="e in employees">{{e.name}}</option>
                 </select>
               </span>
             </p>
+          </div>
+        </div>
+        <div class="columns content">
+          <div class="column">
+            <h3 class="no-margin">Date</h3>
+          </div>
+          <div class="column">
+            <h3 class="no-margin">Start</h3>
+          </div>
+          <div class="column">
+            <h3 class="no-margin">End</h3>
           </div>
         </div>
 <!--MONDAY-->
@@ -430,6 +443,94 @@
         </div>
         <div class="section"></div>
         <a class="button is-success" ng-click="save()">Save Schedule</a>
+      </div>
+<!--EMPLOYEE TAB/////////////////////////////////////////////////////////////////////////////-->
+      <div ng-hide="hideEmployeesTab">
+        <div class="has-text-centered content x-margin">
+          <h2>Employees</h2>
+        </div>
+<!--ADD EMPLOYEE-->
+        <div class="columns content">
+          <div class="column">
+            <h3 class="no-margin">Add Employee</h3>
+          </div>
+        </div>
+        <div class="columns section">
+          <div class="column">
+            <p class="control is-grouped">
+              <input
+                ng-model="employee.email" 
+                class="input" 
+                type="email" 
+                placeholder="Enter new employee's email...">
+              <a class="button is-success" ng-click="add(employee)">
+                Add
+              </a>
+            </p>
+          </div>
+        </div>
+<!--DELETE EMPLOYEE-->
+        <div class="columns content x-margin-top">
+          <div class="column">
+            <h3 class="no-margin">Delete Employee</h3>
+          </div>
+        </div>
+        <div class="columns section">
+          <div class="column">
+            <p class="control is-grouped">
+              <span class="select is-fullwidth">
+                <select name="list" ng-model="employeeList" ng-change="output(e.name)">
+                  <option value="">Select Employee</option>
+                  <option ng-repeat="e in employees">{{e.name}}</option>
+                </select>
+              </span>
+              <a class="button is-danger" ng-click="delete(employeeList)">Delete</a>
+            </p>
+          </div>
+          <div class="column">
+          </div>
+        </div>
+<!--CHANGE EMPLOYEE ROLE-->
+        <div class="columns content x-margin-top">
+          <div class="column">
+            <h3 class="no-margin">Change Employee Role</h3>
+          </div>
+        </div>
+        <div class="columns section">
+          <div class="column">
+            <p class="control">
+              <span class="select is-fullwidth">
+                <select name="list" ng-model="employeeList" ng-change="output(e.name)">
+                  <option value="">Select Employee</option>
+                  <option ng-repeat="e in employees">{{e.name}}</option>
+                </select>
+              </span>
+            </p>
+            <p><u>What role would you like to assign to this employee?</u></p>
+            <br>
+            <p class="control">
+              <label class="radio">
+                <input 
+                  type="radio" 
+                  name="question" 
+                  ng-model="option.employee" 
+                  ng-value="true">
+                  Employee
+              </label>
+              <label class="radio">
+                <input 
+                  type="radio" 
+                  name="question"
+                  ng-model="option.admin" 
+                  ng-value="true">
+                  Admin
+              </label>
+            </p>
+            <a class="button is-success" ng-click="setRole(option)">Set Role</a>
+          </div>
+          <div class="column">
+          </div>
+        </div>
 
 
       </div>

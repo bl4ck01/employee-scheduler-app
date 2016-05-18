@@ -18,6 +18,8 @@
         var q = $q.defer();
         Stamplay.User.update(info.id, info).then(function(res) {
           q.resolve(res);
+        }, function(err) {
+          alert(err.message);
         });
         return q.promise;
       }
